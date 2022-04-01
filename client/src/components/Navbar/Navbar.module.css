@@ -94,6 +94,7 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     font-size: 1.6rem;
+    color: #ddd;
   }
 
   .brand-link:hover,
@@ -111,7 +112,7 @@
     position: absolute;
     top: 0;
     height: 100vh;
-    left: 50%;
+    left: 40%;
     right: 0;
     background-color: #1e2526;
 
@@ -144,10 +145,11 @@
     align-items: center;
     justify-content: center;
     flex-grow: 1;
+    color: #ddd;
   }
 
   .nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    color: #17d6ee;
   }
 
   /* ************* */
@@ -178,6 +180,7 @@
   .hamburger::before {
     transform: translateY(-7px);
   }
+
   .hamburger::after {
     transform: translateY(4px);
   }
