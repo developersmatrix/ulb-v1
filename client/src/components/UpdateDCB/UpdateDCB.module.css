@@ -1,0 +1,15 @@
+.input {
+  display: flex;
+  gap: 1rem;
+  /* flex-direction: column; */
+}
+
+.select {
+  background-color: #fff;
+  border-radius: 0;
+  border: 2px solid #17d6ee;
+  outline-color: #17d6ee;
+  outline-offset: 2px;
+
+  padding: 0.5rem 0.2rem;
+}
