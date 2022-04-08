@@ -1,0 +1,33 @@
+.container {
+  max-width: 100rem;
+  margin: 0 auto;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.input {
+  display: flex;
+  gap: 2rem;
+}
+
+.select {
+  padding: 0.5rem 1rem;
+}
+
+.button {
+  padding: 0.7rem 1.5rem;
+  background-color: #fff;
+  border-radius: 50px;
+  font-weight: 700;
+  letter-spacing: 1.2;
+  color: #17d6ee;
+  border: 1px solid #17d6ee;
+}
+
+.button:hover {
+  color: #1e2526;
+  background-color: #17d6ee;
+}
