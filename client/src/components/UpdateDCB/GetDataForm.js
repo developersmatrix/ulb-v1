@@ -26,18 +26,18 @@ export const GetDataForm = () => {
             id="ctype"
             className={classes.select}
           >
-            <option value="">Select</option>
-            <option value="sas">Sas</option>
-            <option value="water">water</option>
-            <option value="trade">trade</option>
+            {/* <option value="">Select</option> */}
+            <option value="sas">Property Tax</option>
+            <option value="water">Water Tax</option>
+            <option value="rent">Lease & Rent</option>
             <option value="ad">Advertisement</option>
-            <option value="rent">Rent</option>
+            <option value="trade">Trade Liecence</option>
           </select>
         </div>
         <div className={classes["input"]}>
           <label htmlFor="year">Financial Year</label>
           <select name="year" id="year" className={classes.select}>
-            <option value="">Select</option>
+            {/* <option value="">Select</option> */}
             <option value="2022-23">2022-23</option>
             <option value="2021-22">2021-22</option>
             <option value="2020-21">2020-21</option>
