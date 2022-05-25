@@ -1,8 +1,24 @@
 import mongoose from "mongoose";
 
-const testSchema = new mongoose.Schema({
+import Users from "../../users/model.js";
+
+const propertyTaxSchema = new mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
-  title: String,
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: Users },
+  startYear: Number,
+  endYear: Number,
+  totalNumberofProperties: Number,
+  openingBalance: Number,
+  currentYearDemand: Number,
+  monthlyCollection: [
+    {
+      _id: mongoose.Schema.Types.ObjectId,
+      year: Number,
+      month: Number,
+      OBC: Number,
+      CYD: Number,
+    },
+  ],
 });
 
-export default mongoose.model("Testers", testSchema);
+export default mongoose.model("PropertyTaxes", propertyTaxSchema);
