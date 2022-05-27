@@ -3,15 +3,12 @@ import morgan from "morgan";
 
 import { cors } from "./misc/cors.js";
 import { customError, serverError } from "./misc/errors.js";
-import { databaseConnection } from "./misc/dbConnection.js";
 import propertyTaxRouter from "./dcb/property-tax/routes.js";
 
 const app = express();
 
 app.use(morgan("dev"));
 
-// connect to database
-databaseConnection();
 
 app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));

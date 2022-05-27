@@ -7,7 +7,10 @@ const propertyTaxSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: Users },
   startYear: Number,
   endYear: Number,
-  totalNumberofProperties: Number,
+  commercial: Number,
+  residential: Number,
+  vacant: Number,
+  others: Number,
   openingBalance: Number,
   currentYearDemand: Number,
   monthlyCollection: [
