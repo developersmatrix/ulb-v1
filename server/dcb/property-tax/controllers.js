@@ -20,7 +20,27 @@ export const getPropertyTax = (req, res, next) => {
 
 // create or update property Tax details
 export const updatePropertyTax = (req, res, next) => {
-  const data = req.body.name;
+  const data = {
+    _id: Math.random(),
+    userId: req.body.userId,
+    startYear: req.body.startYear,
+    endYear: req.body.endYear,
+    commercial: req.body.commercial,
+    residential: req.body.residential,
+    vacant: req.body.vacant,
+    others: req.body.others,
+    openingBalance: req.body.openingBalance,
+    currentYearDemand: req.body.currentYearDemand,
+    monthlyCollection: [
+      {
+        _id: Math.random(),
+        year: req.body.year,
+        month: req.body.month,
+        OBC: req.body.OBC,
+        CYD: req.body.CYD,
+      },
+    ],
+  };
   console.log(data);
   res.status(201).json(data);
 };
