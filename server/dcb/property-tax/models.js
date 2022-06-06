@@ -4,7 +4,7 @@ import Users from "../../users/model.js";
 
 const propertyTaxSchema = new mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: Users },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "Users" },
   startYear: Number,
   endYear: Number,
   commercial: Number,
