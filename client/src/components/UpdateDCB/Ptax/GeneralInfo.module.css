@@ -1,0 +1,45 @@
+.container__general {
+  margin: 1rem;
+  border: 1px solid aqua;
+}
+
+.heading__primary {
+  text-align: center;
+}
+
+.form__general--info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4.8rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.form__general--info div {
+  flex-basis: 32%;
+}
+
+.test label {
+  color: palegreen;
+}
+
+input {
+  padding: 0.4rem 0.8rem;
+}
+
+.submit__button {
+  margin: 1.6rem;
+  display: flex;
+  justify-content: center;
+}
+
+.submit__button button {
+  padding: 0.8rem 2.4rem;
+  font-weight: 600;
+  transition: width 2000ms ease-in-out;
+}
+
+input[type="number"][disabled] {
+  color: #333;
+  background: rgba(255, 255, 255, 0.9);
+}
