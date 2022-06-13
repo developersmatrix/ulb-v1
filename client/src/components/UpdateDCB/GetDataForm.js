@@ -1,28 +1,48 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
+
+import { useDispatch } from "react-redux";
 
 import classes from "./GetDataForm.module.css";
 
+import { addPtax } from "../../store/ptaxSlice";
+
 export const GetDataForm = () => {
-  const [collectionType, setCollectionType] = useState("");
-  const [financialYear, setFinancialYear] = useState("");
+  const collectionTypeRef = useRef(null);
+  const financialYearRef = useRef(null);
 
-  const ctypeRef = useRef(null);
+  const dispatch = useDispatch();
 
-  const getDataHanler = (event) => {
+  const getDataHandler = (event) => {
     event.preventDefault();
-    const date = new Date().getMonth();
-    console.log(date);
-    console.log(ctypeRef.current.value);
+
+    const collectionType = collectionTypeRef.current.value;
+
+    const financialYear = financialYearRef.current.value;
+    const startYear = financialYear.split("-")[0];
+    const endYear = Number(startYear) + 1;
+
+    console.log(collectionType);
+    console.log(startYear, endYear);
+
+    dispatch(
+      addPtax({
+        id: 1,
+        userId: 0,
+        ptax: "21.25",
+        startYear,
+        endYear,
+      })
+    );
   };
 
   return (
-    <form onSubmit={getDataHanler}>
+    <form onSubmit={getDataHandler}>
       <div className={classes["container"]}>
         <div className={classes["input"]}>
           <label htmlFor="ctype">Collection Type</label>
           <select
             name="ctype"
-            ref={ctypeRef}
+            ref={collectionTypeRef}
             id="ctype"
             className={classes.select}
           >
@@ -31,12 +51,17 @@ export const GetDataForm = () => {
             <option value="water">Water Tax</option>
             <option value="rent">Lease & Rent</option>
             <option value="ad">Advertisement</option>
-            <option value="trade">Trade Liecence</option>
+            <option value="trade">Trade License</option>
           </select>
         </div>
         <div className={classes["input"]}>
           <label htmlFor="year">Financial Year</label>
-          <select name="year" id="year" className={classes.select}>
+          <select
+            name="year"
+            id="year"
+            ref={financialYearRef}
+            className={classes.select}
+          >
             {/* <option value="">Select</option> */}
             <option value="2022-23">2022-23</option>
             <option value="2021-22">2021-22</option>
@@ -45,7 +70,9 @@ export const GetDataForm = () => {
         </div>
 
         <div>
-          <button className={classes["button"]}>Get Data</button>
+          <button type="submit" className={classes["button"]}>
+            Get Data
+          </button>
         </div>
       </div>
     </form>

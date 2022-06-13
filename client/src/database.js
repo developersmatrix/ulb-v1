@@ -2,7 +2,7 @@ export const propertyTax = [
   {
     id: 1,
     userId: 1,
-    collectionType: "propertyTax",
+    collectionType: "sas",
     startYear: 2021,
     endYear: 2022,
     totalNumberOfProperties: 4526,
