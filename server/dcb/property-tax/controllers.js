@@ -5,9 +5,9 @@ import users from "../../users/model.js";
 
 // get Property Tax details
 export const getPropertyTax = (req, res, next) => {
+  console.log(req.body);
   propertyTaxes
     .find()
-    .populate("userId")
     .then((doc) => res.status(200).json(doc))
     .catch((err) => next(err));
 };
@@ -40,5 +40,6 @@ export const updatePropertyTax = (req, res, next) => {
   //   .save()
   //   .then((doc) => res.status(201).json(data))
   //   .catch((err) => next(err));
+  console.log(req.body);
   res.status(201).json(req.body);
 };

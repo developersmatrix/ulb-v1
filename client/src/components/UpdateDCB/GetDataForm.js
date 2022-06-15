@@ -4,7 +4,8 @@ import { useDispatch } from "react-redux";
 
 import classes from "./GetDataForm.module.css";
 
-import { addPtax } from "../../store/ptaxSlice";
+// import { addPtax } from "../../store/ptax/ptaxSlice";
+import { getPtaxCollection } from "../../store/ptax/ptaxAction";
 
 export const GetDataForm = () => {
   const collectionTypeRef = useRef(null);
@@ -23,16 +24,23 @@ export const GetDataForm = () => {
 
     console.log(collectionType);
     console.log(startYear, endYear);
+    const params = {
+      collectionType,
+      startYear,
+    };
 
-    dispatch(
-      addPtax({
-        id: 1,
-        userId: 0,
-        ptax: "21.25",
-        startYear,
-        endYear,
-      })
-    );
+    console.log(params);
+
+    // dispatch(
+    //   addPtax({
+    //     id: 1,
+    //     userId: 0,
+    //     ptax: "21.25",
+    //     startYear,
+    //     endYear,
+    //   })
+    // );
+    dispatch(getPtaxCollection(params));
   };
 
   return (

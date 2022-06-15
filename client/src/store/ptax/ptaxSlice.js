@@ -2,17 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const ptaxSlice = createSlice({
   name: "propertytax",
-  initialState: [
-    {
-      id: 1,
-      userId: 0,
-      ptax: "21.25",
-      startYear: 2022,
-      endYear: 2023,
-    },
-  ],
+  initialState: [{}],
   reducers: {
     addPtax: (state, action) => {
+      state.pop();
       state.push(action.payload);
     },
   },
