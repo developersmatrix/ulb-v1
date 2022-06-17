@@ -5,6 +5,8 @@ import users from "../../users/model.js";
 
 // get Property Tax details
 export const getPropertyTax = (req, res, next) => {
+  const ulbName = req.headers.ulbname;
+  console.log(ulbName);
   console.log(req.body);
   propertyTaxes
     .find()
@@ -40,6 +42,8 @@ export const updatePropertyTax = (req, res, next) => {
   //   .save()
   //   .then((doc) => res.status(201).json(data))
   //   .catch((err) => next(err));
+  const ulbName = req.headers.ulbname;
+  console.log(ulbName);
   console.log(req.body);
   res.status(201).json(req.body);
 };
