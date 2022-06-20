@@ -15,7 +15,6 @@ export const UpdateDCB = () => {
 
   return (
     <div className={classes["container"]}>
-      <h1 className={classes["title"]}>Update Daily Collection Book</h1>
       <GetDataForm />
       <GeneralInfo data={data} />
     </div>

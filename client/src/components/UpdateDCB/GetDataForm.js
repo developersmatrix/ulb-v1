@@ -2,6 +2,7 @@ import { useRef } from "react";
 
 import { useDispatch } from "react-redux";
 
+import Card from "../UI/Card/Card";
 import classes from "./GetDataForm.module.css";
 
 // import { addPtax } from "../../store/ptax/ptaxSlice";
@@ -45,36 +46,39 @@ export const GetDataForm = () => {
 
   return (
     <form onSubmit={getDataHandler}>
-      <div className={classes["container"]}>
-        <div className={classes["input"]}>
-          <label htmlFor="ctype">Collection Type</label>
-          <select
-            name="ctype"
-            ref={collectionTypeRef}
-            id="ctype"
-            className={classes.select}
-          >
-            {/* <option value="">Select</option> */}
-            <option value="sas">Property Tax</option>
-            <option value="water">Water Tax</option>
-            <option value="rent">Lease & Rent</option>
-            <option value="ad">Advertisement</option>
-            <option value="trade">Trade License</option>
-          </select>
-        </div>
-        <div className={classes["input"]}>
-          <label htmlFor="year">Financial Year</label>
-          <select
-            name="year"
-            id="year"
-            ref={financialYearRef}
-            className={classes.select}
-          >
-            {/* <option value="">Select</option> */}
-            <option value="2022-23">2022-23</option>
-            <option value="2021-22">2021-22</option>
-            <option value="2020-21">2020-21</option>
-          </select>
+      <Card className={classes["container"]}>
+        <h1 className={classes["title"]}>Update Daily Collection Book</h1>
+        <div>
+          <div className={classes["input"]}>
+            <label htmlFor="ctype">Collection Type</label>
+            <select
+              name="ctype"
+              ref={collectionTypeRef}
+              id="ctype"
+              className={classes.select}
+            >
+              {/* <option value="">Select</option> */}
+              <option value="sas">Property Tax</option>
+              <option value="water">Water Tax</option>
+              <option value="rent">Lease & Rent</option>
+              <option value="ad">Advertisement</option>
+              <option value="trade">Trade License</option>
+            </select>
+          </div>
+          <div className={classes["input"]}>
+            <label htmlFor="year">Financial Year</label>
+            <select
+              name="year"
+              id="year"
+              ref={financialYearRef}
+              className={classes.select}
+            >
+              {/* <option value="">Select</option> */}
+              <option value="2022-23">2022-23</option>
+              <option value="2021-22">2021-22</option>
+              <option value="2020-21">2020-21</option>
+            </select>
+          </div>
         </div>
 
         <div>
@@ -82,7 +86,7 @@ export const GetDataForm = () => {
             Get Data
           </button>
         </div>
-      </div>
+      </Card>
     </form>
   );
 };
