@@ -6,8 +6,17 @@
   gap: 2rem;
 }
 
+.inputContainer {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
 .title {
   text-align: center;
+  color: aquamarine;
 }
 
 .input {
@@ -19,8 +28,8 @@
   padding: 0.5rem 1rem;
 }
 
-.button {
-  padding: 0.7rem 1.5rem;
+/* .button { */
+/* padding: 0.7rem 1.5rem;
   background-color: #fff;
   border-radius: 50px;
   font-weight: 700;
@@ -32,4 +41,4 @@
 .button:hover {
   color: #1e2526;
   background-color: #17d6ee;
-}
+} */

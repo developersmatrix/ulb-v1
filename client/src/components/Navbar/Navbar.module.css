@@ -14,7 +14,7 @@
   top: 0;
   height: 6.4rem;
   width: 100%;
-  border-bottom: 2px solid rgba(23, 212, 238, 0.475);
+  border-bottom: 2px solid aquamarine;
   overflow-y: none;
 }
 
@@ -33,7 +33,7 @@
 
 .brand-link:hover,
 .brand-link:focus {
-  color: #17d6ee;
+  color: aquamarine;
 }
 
 .brand-img {
@@ -61,7 +61,7 @@
 
 .nav-link:hover,
 .nav-link:focus {
-  color: #17d6ee;
+  color: aquamarine;
 }
 
 .nav-toggle {
@@ -100,7 +100,7 @@
 
   .brand-link:hover,
   .brand-link:focus {
-    color: #17d6ee;
+    color: aquamarine;
   }
 
   .brand-img {
@@ -150,7 +150,7 @@
   }
 
   .nav-link:hover {
-    color: #17d6ee;
+    color: aquamarine;
   }
 
   /* ************* */
@@ -174,7 +174,7 @@
     display: block;
     height: 3px;
     width: 2.5rem;
-    background-color: #17d6ee;
+    background-color: aquamarine;
     transition: all 250ms;
   }
 

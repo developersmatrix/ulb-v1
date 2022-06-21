@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { useDispatch } from "react-redux";
 
 import Card from "../UI/Card/Card";
+import Button from "../UI/Button/Button";
 import classes from "./GetDataForm.module.css";
 
 // import { addPtax } from "../../store/ptax/ptaxSlice";
@@ -48,7 +49,7 @@ export const GetDataForm = () => {
     <form onSubmit={getDataHandler}>
       <Card className={classes["container"]}>
         <h1 className={classes["title"]}>Update Daily Collection Book</h1>
-        <div>
+        <div className={classes.inputContainer}>
           <div className={classes["input"]}>
             <label htmlFor="ctype">Collection Type</label>
             <select
@@ -82,9 +83,7 @@ export const GetDataForm = () => {
         </div>
 
         <div>
-          <button type="submit" className={classes["button"]}>
-            Get Data
-          </button>
+          <Button type="submit">Get Data</Button>
         </div>
       </Card>
     </form>

@@ -7,7 +7,7 @@ import classes from "./UpdateDCB.module.css";
 
 export const UpdateDCB = () => {
   const data = {
-    financialYear: "2021-22",
+    financialYear: "2022-23",
     totalNumberOfProperty: 4626,
     openingBalance: 5.8,
     currentYearDemand: 75,
