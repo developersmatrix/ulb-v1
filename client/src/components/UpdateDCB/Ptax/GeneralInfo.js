@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 
+import Card from "../../UI/Card/Card";
+import Form from "../../UI/Form/Form";
 import Input from "../../UI/Input/Input";
+import Button from "../../UI/Button/Button";
 
 import styles from "./GeneralInfo.module.css";
 
@@ -57,14 +60,13 @@ const GeneralInfo = (props) => {
   };
 
   return (
-    <div className={styles.container__general}>
-      <div className={styles.heading__primary}>
-        <h1>Property Tax Collection - {props.data.financialYear}</h1>
-      </div>
-      <form onSubmit={submitHandler}>
+    <Card className={styles.container__general}>
+      <Form onSubmit={submitHandler}>
+        <h1 className={styles.heading__primary}>
+          Property Tax Collection - {props.data.financialYear}
+        </h1>
         <div className={styles["form__general--info"]}>
           <Input
-            className={styles.test}
             label="Total No of properties"
             type="number"
             id="totalnoofproperties"
@@ -74,7 +76,6 @@ const GeneralInfo = (props) => {
           />
 
           <Input
-            className={styles.test}
             label="Opening Balance"
             type="number"
             id="openingbalance"
@@ -84,7 +85,6 @@ const GeneralInfo = (props) => {
           />
 
           <Input
-            className={styles.test}
             label="Current year Demand"
             type="number"
             id="currentyearDemand"
@@ -94,7 +94,6 @@ const GeneralInfo = (props) => {
           />
 
           <Input
-            className={styles.test}
             label="Total Demand"
             type="number"
             id="totalDemand"
@@ -103,11 +102,9 @@ const GeneralInfo = (props) => {
             disabled={true}
           />
         </div>
-        <div className={styles.submit__button}>
-          <button type="submit">{isDisabled ? "Edit" : "Update"}</button>
-        </div>
-      </form>
-    </div>
+        <Button type="submit">{isDisabled ? "Edit" : "Update"}</Button>
+      </Form>
+    </Card>
   );
 };
 

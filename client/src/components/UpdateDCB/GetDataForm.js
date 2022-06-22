@@ -4,7 +4,8 @@ import { useDispatch } from "react-redux";
 
 import Card from "../UI/Card/Card";
 import Button from "../UI/Button/Button";
-import classes from "./GetDataForm.module.css";
+import Form from "../UI/Form/Form";
+import styles from "./GetDataForm.module.css";
 
 // import { addPtax } from "../../store/ptax/ptaxSlice";
 import { getPtaxCollection } from "../../store/ptax/ptaxAction";
@@ -46,17 +47,17 @@ export const GetDataForm = () => {
   };
 
   return (
-    <form onSubmit={getDataHandler}>
-      <Card className={classes["container"]}>
-        <h1 className={classes["title"]}>Update Daily Collection Book</h1>
-        <div className={classes.inputContainer}>
-          <div className={classes["input"]}>
+    <Card>
+      <Form onSubmit={getDataHandler}>
+        <h1 className={styles.title}>Update Daily Collection Book</h1>
+        <div className={styles.inputContainer}>
+          <div className={styles.input}>
             <label htmlFor="ctype">Collection Type</label>
             <select
               name="ctype"
               ref={collectionTypeRef}
               id="ctype"
-              className={classes.select}
+              className={styles.select}
             >
               {/* <option value="">Select</option> */}
               <option value="sas">Property Tax</option>
@@ -66,13 +67,13 @@ export const GetDataForm = () => {
               <option value="trade">Trade License</option>
             </select>
           </div>
-          <div className={classes["input"]}>
+          <div className={styles.input}>
             <label htmlFor="year">Financial Year</label>
             <select
               name="year"
               id="year"
               ref={financialYearRef}
-              className={classes.select}
+              className={styles.select}
             >
               {/* <option value="">Select</option> */}
               <option value="2022-23">2022-23</option>
@@ -81,11 +82,8 @@ export const GetDataForm = () => {
             </select>
           </div>
         </div>
-
-        <div>
-          <Button type="submit">Get Data</Button>
-        </div>
-      </Card>
-    </form>
+        <Button type="submit">Get Data</Button>
+      </Form>
+    </Card>
   );
 };
