@@ -14,13 +14,35 @@ export const UpdateDCB = () => {
     currentYearDemand: 75,
   };
 
+  const collectionAmt = [
+    {
+      month: "April",
+      year: 2021,
+      OBC: "1.2",
+      CYD: "2.3",
+    },
+    {
+      month: "May",
+      year: 2021,
+      OBC: "1.2",
+      CYD: "2.3",
+    },
+    {
+      month: "June",
+      year: 2021,
+      OBC: "1.2",
+      CYD: "2.3",
+    },
+  ];
+  const ptaxCollection = collectionAmt.map((collection) => (
+    <PtaxCollection data={collection} />
+  ));
+
   return (
     <div className={classes["container"]}>
       <GetDataForm />
       <GeneralInfo data={data} />
-      <PtaxCollection month="April" year="2021" />
-      <PtaxCollection month="May" year="2021" />
-      <PtaxCollection month="June" year="2021" />
+      {ptaxCollection}
     </div>
   );
 };

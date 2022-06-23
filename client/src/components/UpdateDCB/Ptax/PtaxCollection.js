@@ -1,3 +1,4 @@
+import Button from "../../UI/Button/Button";
 import Card from "../../UI/Card/Card";
 import Form from "../../UI/Form/Form";
 import Input from "../../UI/Input/Input";
@@ -8,14 +9,14 @@ const PtaxCollection = (props) => {
     <Card>
       <Form>
         <h1 className={styles.heading__primary}>
-          {props.month} {props.year}
+          {props.data.month} {props.data.year}
         </h1>
         <div className={styles.inputContainer}>
           <Input
             label="OB Collection"
             type="number"
             id="obcollection"
-            value={""}
+            value={props.data.OBC}
             onChange={""}
             disabled={""}
           />
@@ -23,7 +24,7 @@ const PtaxCollection = (props) => {
             label="Demand Collection"
             type="number"
             id="cydcollection"
-            value={""}
+            value={props.data.CYD}
             onChange={""}
             disabled={""}
           />
@@ -36,6 +37,7 @@ const PtaxCollection = (props) => {
             disabled={true}
           />
         </div>
+        <Button type="submit">Update</Button>
       </Form>
     </Card>
   );
