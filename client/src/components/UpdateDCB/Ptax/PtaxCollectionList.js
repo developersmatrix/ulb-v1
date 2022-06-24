@@ -1,30 +1,10 @@
 import { Fragment } from "react";
+import { useSelector } from "react-redux";
 import PtaxCollection from "./PtaxCollection";
 
 const PtaxCollectionList = (props) => {
-  const collectionAmt = [
-    {
-      id: "1",
-      month: "April",
-      year: 2021,
-      OBC: "1.2",
-      CYD: "2.3",
-    },
-    {
-      id: "2",
-      month: "May",
-      year: 2021,
-      OBC: "1.2",
-      CYD: "2.3",
-    },
-    {
-      id: "3",
-      month: "June",
-      year: 2021,
-      OBC: "1.2",
-      CYD: "2.3",
-    },
-  ];
+  const collectionAmt = useSelector((state) => state.ptax[0].monthlyCollection);
+
   const ptaxCollection = collectionAmt.map((collection) => (
     <PtaxCollection key={collection.id} data={collection} />
   ));

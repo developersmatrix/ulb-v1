@@ -5,11 +5,15 @@ import Input from "../../UI/Input/Input";
 import styles from "./PtaxCollection.module.css";
 
 const PtaxCollection = (props) => {
+  const months = ["January", "February", "March", "April", "May", "June"];
+
+  const month = months[props.data.month];
+
   return (
     <Card>
       <Form>
         <h1 className={styles.heading__primary}>
-          {props.data.month} {props.data.year}
+          {month} {props.data.year}
         </h1>
         <div className={styles.inputContainer}>
           <Input

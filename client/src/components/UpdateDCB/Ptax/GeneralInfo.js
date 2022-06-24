@@ -6,12 +6,19 @@ import Input from "../../UI/Input/Input";
 import Button from "../../UI/Button/Button";
 
 import styles from "./GeneralInfo.module.css";
+import { useSelector } from "react-redux";
 
 const GeneralInfo = (props) => {
   const [noProps, setNoProps] = useState(props.data.totalNumberOfProperty);
   const [openingBalance, setOpeningBalance] = useState(
     props.data.openingBalance
   );
+
+  const info = useSelector((state) => state.ptax[0]);
+
+  const tnp = info.commercial + info.vacant + info.residential;
+
+  console.log(tnp);
 
   const [currentYearDemand, setCurrentYearDemand] = useState(
     props.data.currentYearDemand
@@ -70,7 +77,7 @@ const GeneralInfo = (props) => {
             label="Total No of properties"
             type="number"
             id="totalnoofproperties"
-            value={noProps}
+            value={tnp}
             onChange={noPropsHandler}
             disabled={isDisabled}
           />
@@ -79,7 +86,7 @@ const GeneralInfo = (props) => {
             label="Opening Balance"
             type="number"
             id="openingbalance"
-            value={openingBalance}
+            value={info.openingBalance}
             onChange={openingBalanceHandler}
             disabled={isDisabled}
           />
@@ -88,7 +95,7 @@ const GeneralInfo = (props) => {
             label="Current year Demand"
             type="number"
             id="currentyearDemand"
-            value={currentYearDemand}
+            value={info.currentYearDemand}
             onChange={currentYearDemandHandler}
             disabled={isDisabled}
           />

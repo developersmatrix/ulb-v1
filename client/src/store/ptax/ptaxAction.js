@@ -16,7 +16,8 @@ export const getPtaxCollection = (data) => {
         },
       };
 
-      const response = await axios.post(url, params, config);
+      const response = await axios.get(url, params, config);
+      console.log(response.data);
 
       if (response.status !== 200) {
         throw new Error("Failed loading Ptax data");
