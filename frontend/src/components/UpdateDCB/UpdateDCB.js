@@ -18,7 +18,7 @@ export const UpdateDCB = () => {
     <div className={classes["container"]}>
       <GetDataForm />
       <GeneralInfo data={data} />
-      <PtaxCollectionList />
+      {/* <PtaxCollectionList /> */}
     </div>
   );
 };
