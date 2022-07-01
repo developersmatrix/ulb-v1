@@ -3,7 +3,9 @@ import styles from "./Select.module.css";
 
 const Select = forwardRef((props, ref) => {
   const options = props.options.map((option) => (
-    <option value={option.value}>{option.label}</option>
+    <option key={option.label} value={option.value}>
+      {option.label}
+    </option>
   ));
 
   return (

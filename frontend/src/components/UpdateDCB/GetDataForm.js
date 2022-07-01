@@ -11,7 +11,7 @@ import styles from "./GetDataForm.module.css";
 // import { addPtax } from "../../store/ptax/ptaxSlice";
 import { getPtaxCollection } from "../../store/ptax/ptaxAction";
 
-export const GetDataForm = () => {
+export const GetDataForm = (props) => {
   const collectionTypeRef = useRef(null);
   const financialYearRef = useRef(null);
 
@@ -46,6 +46,7 @@ export const GetDataForm = () => {
     //   })
     // );
     dispatch(getPtaxCollection(params));
+    props.gotData(true);
   };
 
   const optionsCT = [

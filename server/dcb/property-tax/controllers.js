@@ -5,8 +5,6 @@ import users from "../../users/model.js";
 
 // get Property Tax details
 export const getPropertyTax = (req, res, next) => {
-  const ulbName = req.headers.ulbname;
-  console.log(ulbName);
   console.log(req.body);
   propertyTaxes
     .find()

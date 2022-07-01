@@ -16,7 +16,8 @@ const GeneralInfo = (props) => {
 
   const info = useSelector((state) => state.ptax[0]);
 
-  const tnp = info.commercial + info.vacant + info.residential;
+  const tnp =
+    Number(info.commercial) + Number(info.vacant) + Number(info.residential);
 
   console.log(tnp);
 
