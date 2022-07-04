@@ -9,28 +9,44 @@ import styles from "./GeneralInfo.module.css";
 import { useSelector } from "react-redux";
 
 const GeneralInfo = (props) => {
-  const [noProps, setNoProps] = useState(props.data.totalNumberOfProperty);
-  const [openingBalance, setOpeningBalance] = useState(
-    props.data.openingBalance
-  );
-
   const info = useSelector((state) => state.ptax[0]);
 
-  const tnp =
-    Number(info.commercial) + Number(info.vacant) + Number(info.residential);
+  //states of property types
+  const [residential, setResidential] = useState(info.residential);
+  const [commercial, setCommercial] = useState(info.commercial);
+  const [vacant, setVacant] = useState(info.vacant);
+  const [totalProperties, setTotalProperties] = useState(
+    Number(info.commercial) + Number(info.vacant) + Number(info.residential)
+  );
 
-  // console.log(tnp);
-
+  const [openingBalance, setOpeningBalance] = useState(info.openingBalance);
   const [currentYearDemand, setCurrentYearDemand] = useState(
-    props.data.currentYearDemand
+    info.currentYearDemand
   );
   const [totalDemand, setTotalDemand] = useState(
     +openingBalance + +currentYearDemand
   );
   const [isDisabled, setIsDisabled] = useState(false);
 
-  const noPropsHandler = (event) => {
-    setNoProps(event.target.value);
+  const residentialHandler = (event) => {
+    setResidential(event.target.value);
+    const tnp =
+      Number(event.target.value) + Number(commercial) + Number(vacant);
+    setTotalProperties(tnp);
+  };
+
+  const commercialHandler = (event) => {
+    setCommercial(event.target.value);
+    const tnp =
+      Number(event.target.value) + Number(residential) + Number(vacant);
+    setTotalProperties(tnp);
+  };
+
+  const vacantHandler = (event) => {
+    setVacant(event.target.value);
+    const tnp =
+      Number(event.target.value) + Number(residential) + Number(commercial);
+    setTotalProperties(tnp);
   };
 
   const openingBalanceHandler = (event) => {
@@ -45,22 +61,18 @@ const GeneralInfo = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    if (
-      noProps.trim().length === 0 ||
-      openingBalance.trim().length === 0 ||
-      currentYearDemand.trim().length === 0
-    ) {
+    if (openingBalance.type === null || currentYearDemand.trim().length === 0) {
       return;
     }
 
     if (!isDisabled) {
       const ptax = {
         ...props.data,
-        totalNumberOfProperty: noProps,
+        totalNumberOfProperty: totalProperties,
         openingBalance: openingBalance,
         currentYearDemand: currentYearDemand,
       };
-      props.updatePtax(ptax);
+      // props.updatePtax(ptax);
       setIsDisabled(true);
     } else {
       setIsDisabled(false);
@@ -75,19 +87,43 @@ const GeneralInfo = (props) => {
         </h1>
         <div className={styles["form__general--info"]}>
           <Input
+            label="Residential Properties"
+            type="number"
+            id="residential"
+            value={residential}
+            onChange={residentialHandler}
+            disabled={isDisabled}
+          />
+          <Input
+            label="Commercial Properties"
+            type="number"
+            id="commercial"
+            value={commercial}
+            onChange={commercialHandler}
+            disabled={isDisabled}
+          />
+          <Input
+            label="Vacant Properties"
+            type="number"
+            id="vacant"
+            value={vacant}
+            onChange={vacantHandler}
+            disabled={isDisabled}
+          />
+
+          <Input
             label="Total No of properties"
             type="number"
             id="totalnoofproperties"
-            value={tnp}
-            onChange={noPropsHandler}
-            disabled={isDisabled}
+            value={totalProperties}
+            disabled={true}
           />
 
           <Input
             label="Opening Balance"
             type="number"
             id="openingbalance"
-            value={info.openingBalance}
+            value={openingBalance}
             onChange={openingBalanceHandler}
             disabled={isDisabled}
           />
@@ -96,7 +132,7 @@ const GeneralInfo = (props) => {
             label="Current year Demand"
             type="number"
             id="currentyearDemand"
-            value={info.currentYearDemand}
+            value={currentYearDemand}
             onChange={currentYearDemandHandler}
             disabled={isDisabled}
           />
@@ -106,7 +142,6 @@ const GeneralInfo = (props) => {
             type="number"
             id="totalDemand"
             value={totalDemand}
-            onChange={currentYearDemandHandler}
             disabled={true}
           />
         </div>

@@ -16,17 +16,19 @@ export const getPtaxCollection = (data) => {
         },
       };
 
-      const response = await axios.get({
+      const response = await axios.get(
         url,
-        params: {
-          collectionType: data.collectionType,
-          startYear: data.startYear,
+        {
+          params: {
+            collectionType: data.collectionType,
+            startYear: data.startYear,
+          },
         },
-        config,
-      });
+        config
+      );
       console.log(response.data);
 
-      if (response.status !== 200) {
+      if (response.statusText !== "OK") {
         throw new Error("Failed loading Ptax data");
       }
 

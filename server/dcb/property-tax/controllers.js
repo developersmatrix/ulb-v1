@@ -1,15 +1,26 @@
 import mongoose from "mongoose";
 
+import { serviceGetPtax } from "./service.js";
+
 import propertyTaxes from "./models.js";
 import users from "../../users/model.js";
 
 // get Property Tax details
-export const getPropertyTax = (req, res, next) => {
-  console.log();
-  propertyTaxes
-    .find()
-    .then((doc) => res.status(200).json(doc))
-    .catch((err) => next(err));
+export const getPropertyTax = async (req, res, next) => {
+  const collectionType = req.query.collectionType;
+  const startYear = req.query.startYear;
+
+  try {
+    const response = await serviceGetPtax(collectionType, startYear);
+    res.status(200).json(response);
+  } catch (err) {
+    next(err);
+  }
+
+  // propertyTaxes
+  //   .find()
+  //   .then((doc) => res.status(200).json(doc))
+  //   .catch((err) => next(err));
 };
 
 // create or update property Tax details
