@@ -5,7 +5,7 @@ import users from "../../users/model.js";
 
 // get Property Tax details
 export const getPropertyTax = (req, res, next) => {
-  console.log(req.body);
+  console.log();
   propertyTaxes
     .find()
     .then((doc) => res.status(200).json(doc))

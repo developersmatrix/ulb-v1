@@ -19,7 +19,7 @@ const GeneralInfo = (props) => {
   const tnp =
     Number(info.commercial) + Number(info.vacant) + Number(info.residential);
 
-  console.log(tnp);
+  // console.log(tnp);
 
   const [currentYearDemand, setCurrentYearDemand] = useState(
     props.data.currentYearDemand

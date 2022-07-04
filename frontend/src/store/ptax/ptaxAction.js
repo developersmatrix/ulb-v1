@@ -6,9 +6,9 @@ export const getPtaxCollection = (data) => {
   return async (dispatch) => {
     const getPtax = async () => {
       const url = "http://localhost:8080/dcb/property-tax";
-      const params = new URLSearchParams();
-      params.append("collectionType", data.collectionType);
-      params.append("startYear", data.startYear);
+      // const params = new URLSearchParams();
+      // params.append("collectionType", data.collectionType);
+      // params.append("startYear", data.startYear);
 
       const config = {
         headers: {
@@ -16,7 +16,14 @@ export const getPtaxCollection = (data) => {
         },
       };
 
-      const response = await axios.post(url, params, config);
+      const response = await axios.get({
+        url,
+        params: {
+          collectionType: data.collectionType,
+          startYear: data.startYear,
+        },
+        config,
+      });
       console.log(response.data);
 
       if (response.status !== 200) {
