@@ -15,9 +15,9 @@ const GeneralInfo = (props) => {
   const [residential, setResidential] = useState(info.residential);
   const [commercial, setCommercial] = useState(info.commercial);
   const [vacant, setVacant] = useState(info.vacant);
-  const [totalProperties, setTotalProperties] = useState(
-    Number(info.commercial) + Number(info.vacant) + Number(info.residential)
-  );
+  const tnp =
+    Number(info.commercial) + Number(info.vacant) + Number(info.residential);
+  const [totalProperties, setTotalProperties] = useState(tnp);
 
   const [openingBalance, setOpeningBalance] = useState(info.openingBalance);
   const [currentYearDemand, setCurrentYearDemand] = useState(
@@ -61,7 +61,7 @@ const GeneralInfo = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    if (openingBalance.type === null || currentYearDemand.trim().length === 0) {
+    if (openingBalance.type === null || currentYearDemand.type === null) {
       return;
     }
 

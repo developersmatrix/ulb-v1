@@ -26,7 +26,7 @@ export const getPtaxCollection = (data) => {
         },
         config
       );
-      console.log(response.data);
+      // console.log(response.data);
 
       if (response.statusText !== "OK") {
         throw new Error("Failed loading Ptax data");
@@ -36,8 +36,9 @@ export const getPtaxCollection = (data) => {
     };
 
     try {
-      const ptaxData = await getPtax();
-      dispatch(addPtax(...ptaxData));
+      const ptaxArray = await getPtax();
+      const ptaxData = ptaxArray[0];
+      dispatch(addPtax(ptaxData));
     } catch (error) {
       console.log(error.message);
     }
