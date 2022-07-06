@@ -46,7 +46,6 @@ export const GetDataForm = (props) => {
     //   })
     // );
     dispatch(getPtaxCollection(params));
-    props.gotData(true);
   };
 
   const optionsCT = [

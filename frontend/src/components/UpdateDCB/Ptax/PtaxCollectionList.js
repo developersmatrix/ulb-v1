@@ -3,7 +3,9 @@ import { useSelector } from "react-redux";
 import PtaxCollection from "./PtaxCollection";
 
 const PtaxCollectionList = (props) => {
-  const collectionAmt = useSelector((state) => state.ptax[0].monthlyCollection);
+  const collectionAmt = useSelector(
+    (state) => state.ptax.ptaxData.monthlyCollection
+  );
 
   console.log(collectionAmt);
 

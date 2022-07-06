@@ -38,6 +38,9 @@ export const getPtaxCollection = (data) => {
     try {
       const ptaxArray = await getPtax();
       const ptaxData = ptaxArray[0];
+      if (ptaxData === undefined) {
+        dispatch(addPtax({}));
+      }
       dispatch(addPtax(ptaxData));
     } catch (error) {
       console.log(error.message);

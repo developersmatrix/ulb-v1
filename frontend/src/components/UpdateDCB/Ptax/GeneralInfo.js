@@ -8,8 +8,8 @@ import Button from "../../UI/Button/Button";
 import styles from "./GeneralInfo.module.css";
 import { useSelector } from "react-redux";
 
-const GeneralInfo = (props) => {
-  const info = useSelector((state) => state.ptax[0]);
+const GeneralInfo = () => {
+  const info = useSelector((state) => state.ptax.ptaxData);
 
   //states of property types
   const [residential, setResidential] = useState(info.residential);
@@ -61,29 +61,31 @@ const GeneralInfo = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    if (openingBalance.type === null || currentYearDemand.type === null) {
+    if (openingBalance.type !== "number" || currentYearDemand.type === null) {
       return;
     }
 
     if (!isDisabled) {
-      const ptax = {
-        ...props.data,
-        totalNumberOfProperty: totalProperties,
-        openingBalance: openingBalance,
-        currentYearDemand: currentYearDemand,
-      };
-      // props.updatePtax(ptax);
       setIsDisabled(true);
     } else {
       setIsDisabled(false);
     }
   };
 
-  return (
+  let Jsx = null;
+  if (info.keys.length === 0) {
+    Jsx = (
+      <Card className={styles.container__general}>
+        <Button className={styles.center}>Add Basic details</Button>
+      </Card>
+    );
+  }
+
+  Jsx = (
     <Card className={styles.container__general}>
       <Form onSubmit={submitHandler}>
         <h1 className={styles.heading__primary}>
-          Property Tax Collection - {props.data.financialYear}
+          Property Tax Collection - {` ${info.startYear}- ${info.endYear}`}
         </h1>
         <div className={styles["form__general--info"]}>
           <Input
@@ -149,6 +151,8 @@ const GeneralInfo = (props) => {
       </Form>
     </Card>
   );
+
+  return Jsx;
 };
 
 export default GeneralInfo;
