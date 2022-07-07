@@ -1,7 +1,8 @@
-.center {
-  margin: 0 auto;
-  color: red;
+.btn-container {
+  display: flex;
+  justify-content: center;
 }
+
 .heading__primary {
   text-align: center;
   color: aquamarine;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Card from "../../UI/Card/Card";
 import Form from "../../UI/Form/Form";
@@ -13,6 +13,10 @@ const GeneralInfo = () => {
 
   //states of property types
   const [residential, setResidential] = useState(info.residential);
+
+  useEffect(() => {
+    console.log(residential);
+  }, [residential]);
   const [commercial, setCommercial] = useState(info.commercial);
   const [vacant, setVacant] = useState(info.vacant);
   const tnp =
@@ -72,87 +76,88 @@ const GeneralInfo = () => {
     }
   };
 
-  let Jsx = null;
-  if (info.keys === 0) {
-    Jsx = (
+  console.log(info);
+
+  let generalData = (
+    <Card className={styles["btn-container"]}>
+      <Button>Add General details</Button>
+    </Card>
+  );
+
+  if (Object.keys(info).length > 0) {
+    generalData = (
       <Card className={styles.container__general}>
-        <Button className={styles.center}>Add Basic details</Button>
+        <Form onSubmit={submitHandler}>
+          <h1 className={styles.heading__primary}>
+            Property Tax Collection - {` ${info.startYear}- ${info.endYear}`}
+          </h1>
+          <div className={styles["form__general--info"]}>
+            <Input
+              label="Residential Properties"
+              type="number"
+              id="residential"
+              value={residential}
+              onChange={residentialHandler}
+              disabled={isDisabled}
+            />
+            <Input
+              label="Commercial Properties"
+              type="number"
+              id="commercial"
+              value={commercial}
+              onChange={commercialHandler}
+              disabled={isDisabled}
+            />
+            <Input
+              label="Vacant Properties"
+              type="number"
+              id="vacant"
+              value={vacant}
+              onChange={vacantHandler}
+              disabled={isDisabled}
+            />
+
+            <Input
+              label="Total No of properties"
+              type="number"
+              id="totalnoofproperties"
+              value={totalProperties}
+              disabled={true}
+            />
+
+            <Input
+              label="Opening Balance"
+              type="number"
+              id="openingbalance"
+              value={openingBalance}
+              onChange={openingBalanceHandler}
+              disabled={isDisabled}
+            />
+
+            <Input
+              label="Current year Demand"
+              type="number"
+              id="currentyearDemand"
+              value={currentYearDemand}
+              onChange={currentYearDemandHandler}
+              disabled={isDisabled}
+            />
+
+            <Input
+              label="Total Demand"
+              type="number"
+              id="totalDemand"
+              value={totalDemand}
+              disabled={true}
+            />
+          </div>
+          <Button type="submit">{isDisabled ? "Edit" : "Update"}</Button>
+        </Form>
       </Card>
     );
   }
 
-  Jsx = (
-    <Card className={styles.container__general}>
-      <Form onSubmit={submitHandler}>
-        <h1 className={styles.heading__primary}>
-          Property Tax Collection - {` ${info.startYear}- ${info.endYear}`}
-        </h1>
-        <div className={styles["form__general--info"]}>
-          <Input
-            label="Residential Properties"
-            type="number"
-            id="residential"
-            value={residential}
-            onChange={residentialHandler}
-            disabled={isDisabled}
-          />
-          <Input
-            label="Commercial Properties"
-            type="number"
-            id="commercial"
-            value={commercial}
-            onChange={commercialHandler}
-            disabled={isDisabled}
-          />
-          <Input
-            label="Vacant Properties"
-            type="number"
-            id="vacant"
-            value={vacant}
-            onChange={vacantHandler}
-            disabled={isDisabled}
-          />
-
-          <Input
-            label="Total No of properties"
-            type="number"
-            id="totalnoofproperties"
-            value={totalProperties}
-            disabled={true}
-          />
-
-          <Input
-            label="Opening Balance"
-            type="number"
-            id="openingbalance"
-            value={openingBalance}
-            onChange={openingBalanceHandler}
-            disabled={isDisabled}
-          />
-
-          <Input
-            label="Current year Demand"
-            type="number"
-            id="currentyearDemand"
-            value={currentYearDemand}
-            onChange={currentYearDemandHandler}
-            disabled={isDisabled}
-          />
-
-          <Input
-            label="Total Demand"
-            type="number"
-            id="totalDemand"
-            value={totalDemand}
-            disabled={true}
-          />
-        </div>
-        <Button type="submit">{isDisabled ? "Edit" : "Update"}</Button>
-      </Form>
-    </Card>
-  );
-
-  return Jsx;
+  return generalData;
 };
 
 export default GeneralInfo;

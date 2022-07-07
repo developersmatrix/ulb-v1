@@ -9,6 +9,8 @@ const PtaxCollection = (props) => {
 
   const month = months[props.data.month];
 
+  const test = () => {};
+
   return (
     <Card>
       <Form>
@@ -21,23 +23,23 @@ const PtaxCollection = (props) => {
             type="number"
             id="obcollection"
             value={props.data.OBC}
-            onChange={""}
-            disabled={""}
+            onChange={test}
+            disabled={false}
           />
           <Input
             label="Demand Collection"
             type="number"
             id="cydcollection"
             value={props.data.CYD}
-            onChange={""}
-            disabled={""}
+            onChange={test}
+            disabled={false}
           />
           <Input
             label="Total collection"
             type="number"
             id="totalcollection"
-            value={""}
-            onChange={""}
+            value={22}
+            onChange={test}
             disabled={true}
           />
         </div>
