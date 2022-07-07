@@ -9,6 +9,10 @@ const PtaxCollectionList = (props) => {
 
   console.log(collectionAmt);
 
+  if (collectionAmt === undefined) {
+    return <div></div>;
+  }
+
   const ptaxCollection = collectionAmt.map((collection) => (
     <PtaxCollection key={collection._id} data={collection} />
   ));

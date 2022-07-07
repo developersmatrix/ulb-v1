@@ -73,7 +73,7 @@ const GeneralInfo = () => {
   };
 
   let Jsx = null;
-  if (info.keys.length === 0) {
+  if (info.keys === 0) {
     Jsx = (
       <Card className={styles.container__general}>
         <Button className={styles.center}>Add Basic details</Button>
