@@ -11,6 +11,9 @@ export const ptaxSlice = createSlice({
       state.dataFetched = true;
       state.ptaxData = action.payload;
     },
+    updatePtax: (state, action) => {
+      state.ptaxData = action.payload;
+    },
     resetPtax: (state) => {
       state.dataFetched = false;
       state.ptaxData = {};
@@ -18,6 +21,6 @@ export const ptaxSlice = createSlice({
   },
 });
 
-export const { addPtax, resetPtax } = ptaxSlice.actions;
+export const { addPtax, updatePtax, resetPtax } = ptaxSlice.actions;
 
 export default ptaxSlice.reducer;

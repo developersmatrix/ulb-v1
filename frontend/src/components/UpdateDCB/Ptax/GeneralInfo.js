@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import Card from "../../UI/Card/Card";
 import Form from "../../UI/Form/Form";
@@ -6,17 +6,16 @@ import Input from "../../UI/Input/Input";
 import Button from "../../UI/Button/Button";
 
 import styles from "./GeneralInfo.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updatePtaxCollection } from "../../../store/ptax/ptaxAction";
 
-const GeneralInfo = () => {
+const GeneralInfo = (props) => {
   const info = useSelector((state) => state.ptax.ptaxData);
+  const dispatch = useDispatch();
 
   //states of property types
   const [residential, setResidential] = useState(info.residential);
 
-  useEffect(() => {
-    console.log(residential);
-  }, [residential]);
   const [commercial, setCommercial] = useState(info.commercial);
   const [vacant, setVacant] = useState(info.vacant);
   const tnp =
@@ -54,6 +53,7 @@ const GeneralInfo = () => {
   };
 
   const openingBalanceHandler = (event) => {
+    console.log(event.target.value);
     setOpeningBalance(event.target.value);
     setTotalDemand(Number(event.target.value) + Number(currentYearDemand));
   };
@@ -65,99 +65,106 @@ const GeneralInfo = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    if (openingBalance.type !== "number" || currentYearDemand.type === null) {
+    if (
+      residential.toString().trim().length === 0 ||
+      commercial.toString().trim().length === 0 ||
+      vacant.toString().trim().length === 0 ||
+      openingBalance.toString().trim().length === 0 ||
+      currentYearDemand.toString().trim().length === 0
+    ) {
       return;
     }
+
+    const generalData = {
+      ...info,
+      residential: Number(residential),
+      commercial: Number(commercial),
+      vacant: Number(vacant),
+      openingBalance: Number(openingBalance),
+      currentYearDemand: Number(currentYearDemand),
+    };
+
+    dispatch(updatePtaxCollection(generalData));
 
     if (!isDisabled) {
       setIsDisabled(true);
     } else {
       setIsDisabled(false);
     }
+
+    console.log(generalData);
   };
 
-  console.log(info);
+  return (
+    <Card className={styles.container__general}>
+      <Form onSubmit={submitHandler}>
+        <h1 className={styles.heading__primary}>
+          Property Tax Collection - {` ${info.startYear}- ${info.endYear}`}
+        </h1>
+        <div className={styles["form__general--info"]}>
+          <Input
+            label="Residential Properties"
+            type="number"
+            id="residential"
+            value={residential}
+            onChange={residentialHandler}
+            disabled={isDisabled}
+          />
+          <Input
+            label="Commercial Properties"
+            type="number"
+            id="commercial"
+            value={commercial}
+            onChange={commercialHandler}
+            disabled={isDisabled}
+          />
+          <Input
+            label="Vacant Properties"
+            type="number"
+            id="vacant"
+            value={vacant}
+            onChange={vacantHandler}
+            disabled={isDisabled}
+          />
 
-  let generalData = (
-    <Card className={styles["btn-container"]}>
-      <Button>Add General details</Button>
+          <Input
+            label="Total No of properties"
+            type="number"
+            id="totalnoofproperties"
+            value={totalProperties}
+            disabled={true}
+          />
+
+          <Input
+            label="Opening Balance"
+            type="number"
+            id="openingbalance"
+            value={openingBalance}
+            onChange={openingBalanceHandler}
+            disabled={isDisabled}
+          />
+
+          <Input
+            label="Current year Demand"
+            type="number"
+            id="currentyearDemand"
+            value={currentYearDemand}
+            onChange={currentYearDemandHandler}
+            disabled={isDisabled}
+          />
+
+          <Input
+            label="Total Demand"
+            type="number"
+            id="totalDemand"
+            value={totalDemand}
+            disabled={true}
+          />
+        </div>
+        <Button type="submit">{isDisabled ? "Edit" : "Update"}</Button>
+      </Form>
     </Card>
   );
-
-  if (Object.keys(info).length > 0) {
-    generalData = (
-      <Card className={styles.container__general}>
-        <Form onSubmit={submitHandler}>
-          <h1 className={styles.heading__primary}>
-            Property Tax Collection - {` ${info.startYear}- ${info.endYear}`}
-          </h1>
-          <div className={styles["form__general--info"]}>
-            <Input
-              label="Residential Properties"
-              type="number"
-              id="residential"
-              value={residential}
-              onChange={residentialHandler}
-              disabled={isDisabled}
-            />
-            <Input
-              label="Commercial Properties"
-              type="number"
-              id="commercial"
-              value={commercial}
-              onChange={commercialHandler}
-              disabled={isDisabled}
-            />
-            <Input
-              label="Vacant Properties"
-              type="number"
-              id="vacant"
-              value={vacant}
-              onChange={vacantHandler}
-              disabled={isDisabled}
-            />
-
-            <Input
-              label="Total No of properties"
-              type="number"
-              id="totalnoofproperties"
-              value={totalProperties}
-              disabled={true}
-            />
-
-            <Input
-              label="Opening Balance"
-              type="number"
-              id="openingbalance"
-              value={openingBalance}
-              onChange={openingBalanceHandler}
-              disabled={isDisabled}
-            />
-
-            <Input
-              label="Current year Demand"
-              type="number"
-              id="currentyearDemand"
-              value={currentYearDemand}
-              onChange={currentYearDemandHandler}
-              disabled={isDisabled}
-            />
-
-            <Input
-              label="Total Demand"
-              type="number"
-              id="totalDemand"
-              value={totalDemand}
-              disabled={true}
-            />
-          </div>
-          <Button type="submit">{isDisabled ? "Edit" : "Update"}</Button>
-        </Form>
-      </Card>
-    );
-  }
-
-  return generalData;
 };
 
 export default GeneralInfo;

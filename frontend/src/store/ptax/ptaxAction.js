@@ -48,3 +48,33 @@ export const getPtaxCollection = (data) => {
     }
   };
 };
+
+export const updatePtaxCollection = (data) => {
+  return async (dispatch) => {
+    const updatePtaxData = async () => {
+      console.log(data);
+      const url = "http://localhost:8080/dcb/property-tax";
+      const body = {};
+
+      const response = await axios.patch(url, { body });
+
+      if (response.statusText !== "OK") {
+        throw new Error("Failed loading Ptax data");
+      }
+
+      return response.data;
+    };
+
+    try {
+      const ptaxArray = await updatePtaxData();
+      // if (ptaxArray.length === 0) {
+      //   dispatch(addPtax({}));
+      // } else {
+      //   const ptaxData = ptaxArray[0];
+      //   dispatch(addPtax(ptaxData));
+      console.log(ptaxArray);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
