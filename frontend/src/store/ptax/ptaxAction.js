@@ -54,7 +54,7 @@ export const updatePtaxCollection = (data) => {
     const updatePtaxData = async () => {
       console.log(data);
       const url = "http://localhost:8080/dcb/property-tax";
-      const body = {};
+      const body = { ...data };
 
       const response = await axios.patch(url, { body });
 

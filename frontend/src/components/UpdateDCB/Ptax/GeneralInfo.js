@@ -76,7 +76,7 @@ const GeneralInfo = (props) => {
     }
 
     const generalData = {
-      ...info,
+      id: info._id,
       residential: Number(residential),
       commercial: Number(commercial),
       vacant: Number(vacant),
@@ -84,13 +84,13 @@ const GeneralInfo = (props) => {
       currentYearDemand: Number(currentYearDemand),
     };
 
-    dispatch(updatePtaxCollection(generalData));
-
     if (!isDisabled) {
       setIsDisabled(true);
     } else {
       setIsDisabled(false);
+      return;
     }
+    dispatch(updatePtaxCollection(generalData));
 
     console.log(generalData);
   };

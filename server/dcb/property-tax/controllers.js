@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-import { serviceGetPtax } from "./service.js";
+import { serviceGetPtax, servicePatchPtax } from "./service.js";
 
 import propertyTaxes from "./models.js";
 import users from "../../users/model.js";
@@ -55,4 +55,15 @@ export const updatePropertyTax = (req, res, next) => {
   console.log(ulbName);
   console.log(req.body);
   res.status(201).json(req.body);
+};
+
+export const patchPropertyTax = async (req, res, next) => {
+  let data = req.body;
+  console.log(data);
+  try {
+    const response = await servicePatchPtax();
+    res.status(200).json(response);
+  } catch (error) {
+    throw error;
+  }
 };

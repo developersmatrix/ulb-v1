@@ -13,3 +13,14 @@ export const getPtaxData = async (collectionType, startYear) => {
   }
   return ptax;
 };
+
+export const patchPtaxData = async (data) => {
+  let update = null;
+  try {
+    update = await propertyTaxes.findByIdAndUpdate(data.id, data);
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+  return update;
+};
