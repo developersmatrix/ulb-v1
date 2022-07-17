@@ -54,9 +54,8 @@ export const updatePtaxCollection = (data) => {
     const updatePtaxData = async () => {
       console.log(data);
       const url = "http://localhost:8080/dcb/property-tax";
-      const body = { ...data };
 
-      const response = await axios.patch(url, { body });
+      const response = await axios.patch(url, { body: data });
 
       if (response.statusText !== "OK") {
         throw new Error("Failed loading Ptax data");
@@ -67,6 +66,8 @@ export const updatePtaxCollection = (data) => {
 
     try {
       const ptaxArray = await updatePtaxData();
+      console.log("UpdateD");
+      dispatch(addPtax(data));
       // if (ptaxArray.length === 0) {
       //   dispatch(addPtax({}));
       // } else {

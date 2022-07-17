@@ -90,9 +90,8 @@ const GeneralInfo = (props) => {
       setIsDisabled(false);
       return;
     }
-    dispatch(updatePtaxCollection(generalData));
-
     console.log(generalData);
+    dispatch(updatePtaxCollection(generalData));
   };
 
   return (
