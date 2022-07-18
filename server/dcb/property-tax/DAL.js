@@ -17,10 +17,13 @@ export const getPtaxData = async (collectionType, startYear) => {
 export const patchPtaxData = async (data) => {
   let update = null;
   try {
-    update = await propertyTaxes.findByIdAndUpdate(data.id, data);
+    update = await propertyTaxes.findByIdAndUpdate(data.id, data, {
+      new: true,
+    });
+    console.log(update);
   } catch (err) {
     console.log(err);
-    throw err;
+    throw Error();
   }
   return update;
 };

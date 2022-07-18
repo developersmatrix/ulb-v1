@@ -1,5 +1,4 @@
-import { patchPropertyTax } from "./controllers.js";
-import { getPtaxData } from "./DAL.js";
+import { getPtaxData, patchPtaxData } from "./DAL.js";
 
 export const serviceGetPtax = async (collectionType, startYear) => {
   let data = [];
@@ -14,13 +13,13 @@ export const serviceGetPtax = async (collectionType, startYear) => {
 };
 
 export const servicePatchPtax = async (data) => {
-  console.log(data);
+  // console.log("service", data);
   let res = null;
   try {
-    res = await patchPropertyTax(data);
+    res = await patchPtaxData(data);
   } catch (error) {
     console.log(error);
-    throw error;
+    throw Error();
   }
   return res;
 };
