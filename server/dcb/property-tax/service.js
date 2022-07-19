@@ -12,11 +12,10 @@ export const serviceGetPtax = async (collectionType, startYear) => {
   return data;
 };
 
-export const servicePatchPtax = async (data) => {
-  // console.log("service", data);
+export const servicePatchPtax = async (id, newData) => {
   let res = null;
   try {
-    res = await patchPtaxData(data);
+    res = await patchPtaxData(id, newData);
   } catch (error) {
     console.log(error);
     throw Error();

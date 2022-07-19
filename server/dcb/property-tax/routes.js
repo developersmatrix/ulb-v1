@@ -11,6 +11,6 @@ const router = express.Router();
 //handle /dc/property-tax
 router.get("/", getPropertyTax);
 router.post("/", updatePropertyTax);
-router.patch("/", patchPropertyTax);
+router.patch("/:id", patchPropertyTax);
 
 export default router;

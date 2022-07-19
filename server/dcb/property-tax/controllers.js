@@ -58,10 +58,10 @@ export const updatePropertyTax = (req, res, next) => {
 };
 
 export const patchPropertyTax = async (req, res, next) => {
-  let data = req.body;
-  // console.log("con", data);
+  const id = req.params.id;
+  const newData = req.body;
   try {
-    const response = await servicePatchPtax(data);
+    const response = await servicePatchPtax(id, newData);
     res.status(200).json(response);
   } catch (error) {
     throw error;

@@ -5,8 +5,8 @@ import propertyTaxes from "./models.js";
 export const getPtaxData = async (collectionType, startYear) => {
   let ptax = null;
   try {
-    ptax = await propertyTaxes.find({ startYear });
-    // console.log(ptax);
+    ptax = await propertyTaxes.find({ collectionType, startYear });
+    console.log(ptax);
   } catch (err) {
     console.log(err.message);
     throw err;
@@ -14,16 +14,15 @@ export const getPtaxData = async (collectionType, startYear) => {
   return ptax;
 };
 
-export const patchPtaxData = async (data) => {
+export const patchPtaxData = async (id, newData) => {
   let update = null;
   try {
-    update = await propertyTaxes.findByIdAndUpdate(data.id, data, {
+    update = await propertyTaxes.findByIdAndUpdate(id, newData, {
       new: true,
     });
-    console.log(update);
   } catch (err) {
     console.log(err);
-    throw Error();
+    throw new Error(err);
   }
   return update;
 };
