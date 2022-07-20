@@ -41,6 +41,7 @@ export const getPtaxCollection = (data) => {
         dispatch(addPtax({}));
       } else {
         const ptaxData = ptaxArray[0];
+        console.log(ptaxData);
         dispatch(addPtax(ptaxData));
       }
     } catch (error) {

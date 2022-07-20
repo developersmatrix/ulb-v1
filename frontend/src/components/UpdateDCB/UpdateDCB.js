@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { GetDataForm } from "./GetDataForm";
@@ -27,9 +27,14 @@ export const UpdateDCB = () => {
       {gotData && Object.keys(data).length > 0 && <GeneralInfo id={data._id} />}
 
       {gotData && Object.keys(data).length === 0 && (
-        <Card className={styles["btn-container"]}>
-          <Button>Add General details</Button>
-        </Card>
+        <Fragment>
+          <Card className={styles["btn-container"]}>
+            <Button>Add General details</Button>
+          </Card>
+          <Card className={styles["btn-container"]}>
+            <Button>Add Monthly Collection details</Button>
+          </Card>
+        </Fragment>
       )}
 
       {gotData &&
@@ -39,9 +44,12 @@ export const UpdateDCB = () => {
       {gotData &&
         Object.keys(data).length > 0 &&
         data.monthlyCollection.length === 0 && (
-          <Card className={styles["btn-container"]}>
-            <Button>Add General details</Button>
-          </Card>
+          <Fragment>
+            <GeneralInfo id={data._id} />
+            <Card className={styles["btn-container"]}>
+              <Button>Add General details</Button>
+            </Card>
+          </Fragment>
         )}
     </div>
   );

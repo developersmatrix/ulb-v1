@@ -4,7 +4,29 @@ export const ptaxSlice = createSlice({
   name: "propertytax",
   initialState: {
     dataFetched: false,
-    ptaxData: {},
+    gdIsEmpty: true,
+    mcIsEmpty: true,
+    ptaxData: {
+      _id: "",
+      userId: "",
+      collectionType: "",
+      startYear: 0,
+      endYear: 0,
+      openingBalance: 0,
+      currentYearDemand: 0,
+      commercial: 0,
+      residential: 0,
+      vacant: 0,
+      monthlyCollection: [
+        {
+          CYD: 0,
+          OBC: 0,
+          month: 0,
+          year: 0,
+          _id: "",
+        },
+      ],
+    },
   },
   reducers: {
     addPtax: (state, action) => {
