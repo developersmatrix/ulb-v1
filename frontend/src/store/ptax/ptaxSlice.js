@@ -4,8 +4,9 @@ export const ptaxSlice = createSlice({
   name: "propertytax",
   initialState: {
     dataFetched: false,
-    gdIsEmpty: true,
+    giIsEmpty: true,
     mcIsEmpty: true,
+    mcIsFull: false,
     ptaxData: {
       _id: "",
       userId: "",
@@ -31,10 +32,31 @@ export const ptaxSlice = createSlice({
   reducers: {
     addPtax: (state, action) => {
       state.dataFetched = true;
+      let ptax = action.payload;
+      if (Object.keys(ptax).length === 0) {
+        state.giIsEmpty = true;
+        state.mcIsEmpty = true;
+        state.mcIsFull = false;
+      } else if (ptax.monthlyCollection.length === 0) {
+        state.giIsEmpty = false;
+        state.mcIsEmpty = true;
+        state.mcIsFull = false;
+      } else if (ptax.monthlyCollection.length > 0) {
+        state.giIsEmpty = false;
+        state.mcIsEmpty = false;
+        state.mcIsFull = false;
+      } else if (ptax.monthlyCollection.length === 11) {
+        state.giIsEmpty = false;
+        state.mcIsEmpty = false;
+        state.mcIsFull = true;
+      }
       state.ptaxData = action.payload;
     },
     updatePtax: (state, action) => {
       state.ptaxData = action.payload;
+    },
+    updateGenInfoStatus: (state) => {
+      state.giIsEmpty = false;
     },
     resetPtax: (state) => {
       state.dataFetched = false;
@@ -43,6 +65,7 @@ export const ptaxSlice = createSlice({
   },
 });
 
-export const { addPtax, updatePtax, resetPtax } = ptaxSlice.actions;
+export const { addPtax, updatePtax, resetPtax, updateGenInfoStatus } =
+  ptaxSlice.actions;
 
 export default ptaxSlice.reducer;
