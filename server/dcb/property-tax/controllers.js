@@ -1,11 +1,12 @@
 import mongoose from "mongoose";
 
-import { serviceGetPtax, servicePatchPtax } from "./service.js";
+import {
+  serviceGetPtax,
+  servicePatchPtax,
+  addGeneralDataService,
+} from "./service.js";
 
-import propertyTaxes from "./models.js";
-import users from "../../users/model.js";
-
-// get Property Tax details
+// get Enitre Property Tax details of the specified financial year
 export const getPropertyTax = async (req, res, next) => {
   const collectionType = req.query.collectionType;
   const startYear = req.query.startYear;
@@ -16,45 +17,17 @@ export const getPropertyTax = async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-
-  // propertyTaxes
-  //   .find()
-  //   .then((doc) => res.status(200).json(doc))
-  //   .catch((err) => next(err));
 };
 
 // create or update property Tax details
-export const updatePropertyTax = (req, res, next) => {
-  const data = {
-    _id: mongoose.Types.ObjectId(),
-    userId: req.body.userId,
-    startYear: req.body.startYear,
-    endYear: req.body.endYear,
-    commercial: req.body.commercial,
-    residential: req.body.residential,
-    vacant: req.body.vacant,
-    others: req.body.others,
-    openingBalance: req.body.openingBalance,
-    currentYearDemand: req.body.currentYearDemand,
-    monthlyCollection: [
-      {
-        _id: mongoose.Types.ObjectId(),
-        year: req.body.year,
-        month: req.body.month,
-        OBC: req.body.OBC,
-        CYD: req.body.CYD,
-      },
-    ],
-  };
-  // const ptax = new propertyTaxes(data);
-  // ptax
-  //   .save()
-  //   .then((doc) => res.status(201).json(data))
-  //   .catch((err) => next(err));
-  const ulbName = req.headers.ulbname;
-  console.log(ulbName);
-  console.log(req.body);
-  res.status(201).json(req.body);
+export const addGeneralData = async (req, res, next) => {
+  const generalData = req.body;
+  try {
+    const response = await addGeneralDataService(generalData);
+    res.status(201).json(response);
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
 export const patchPropertyTax = async (req, res, next) => {

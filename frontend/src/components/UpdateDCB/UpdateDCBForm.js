@@ -25,18 +25,28 @@ function UpdateDCBForm() {
       {isGenInfoEmpty && (
         <AddBtn onClick={showGIForm}>Add General details</AddBtn>
       )}
-      {!isGenInfoEmpty && <GeneralInfo id={ptaxData._id} />}
 
-      {isMonColEmpty && !isMonColFull && (
-        <AddBtn>Add Monthly Collection</AddBtn>
-      )}
-      {!isMonColEmpty && !isMonColFull && (
+      {!isGenInfoEmpty && isMonColEmpty && (
         <Fragment>
+          <GeneralInfo id={ptaxData._id} />
+          <AddBtn>Add Monthly Collection</AddBtn>
+        </Fragment>
+      )}
+
+      {!isGenInfoEmpty && !isMonColEmpty && !isMonColFull && (
+        <Fragment>
+          <GeneralInfo id={ptaxData._id} />
           <AddBtn>Add Monthly Collection</AddBtn>
           <PtaxCollectionList />
         </Fragment>
       )}
-      {!isMonColEmpty && isMonColFull && <PtaxCollectionList />}
+      {!isGenInfoEmpty && !isMonColEmpty && isMonColFull && (
+        <Fragment>
+          <GeneralInfo id={ptaxData._id} />
+          <AddBtn>Add Monthly Collection</AddBtn>
+          <PtaxCollectionList />
+        </Fragment>
+      )}
     </Fragment>
   );
 }
