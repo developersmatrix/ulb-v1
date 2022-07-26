@@ -1,4 +1,9 @@
-import { getPtaxData, createGeneralData, patchPtaxData } from "./DAL.js";
+import {
+  getPtaxData,
+  addGeneralDataDAL,
+  updateGeneralDataDAL,
+  updateMonthlyCollectionDAL,
+} from "./DAL.js";
 
 export const serviceGetPtax = async (collectionType, startYear) => {
   let data = [];
@@ -14,20 +19,37 @@ export const serviceGetPtax = async (collectionType, startYear) => {
 
 export const addGeneralDataService = async (generalData) => {
   try {
-    const response = await createGeneralData(generalData);
+    const response = await addGeneralDataDAL(generalData);
     return response;
   } catch (error) {
     throw new Error(error);
   }
 };
 
-export const servicePatchPtax = async (id, newData) => {
-  let res = null;
+export const updateGeneralDataService = async (id, newData) => {
   try {
-    res = await patchPtaxData(id, newData);
+    const res = await updateGeneralDataDAL(id, newData);
+    return res;
   } catch (error) {
     console.log(error);
     throw Error();
   }
-  return res;
+};
+
+export const updateMonthlyCollectionService = async (id, collectionData) => {
+  const ptaxId = id;
+  const collectionID = collectionData.monthlyCollection.id;
+  const updatedCollectionData = { ...collectionData.monthlyCollection };
+
+  try {
+    const res = await updateMonthlyCollectionDAL(
+      ptaxId,
+      collectionID,
+      updatedCollectionData
+    );
+    return res;
+  } catch (error) {
+    console.log(error);
+    throw Error();
+  }
 };

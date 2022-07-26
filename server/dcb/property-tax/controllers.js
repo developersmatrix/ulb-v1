@@ -2,8 +2,9 @@ import mongoose from "mongoose";
 
 import {
   serviceGetPtax,
-  servicePatchPtax,
+  updateGeneralDataService,
   addGeneralDataService,
+  updateMonthlyCollectionService,
 } from "./service.js";
 
 // get Enitre Property Tax details of the specified financial year
@@ -30,13 +31,24 @@ export const addGeneralData = async (req, res, next) => {
   }
 };
 
-export const patchPropertyTax = async (req, res, next) => {
+export const updateGeneralData = async (req, res, next) => {
   const id = req.params.id;
   const newData = req.body;
   try {
-    const response = await servicePatchPtax(id, newData);
+    const response = await updateGeneralDataService(id, newData);
     res.status(200).json(response);
   } catch (error) {
-    throw error;
+    throw new Error(error);
+  }
+};
+
+export const updateMonthlyCollection = async (req, res, next) => {
+  const id = req.params.id;
+  const collectionData = req.body;
+  try {
+    const response = await updateMonthlyCollectionService(id, collectionData);
+    res.status(200).json(response);
+  } catch (error) {
+    throw new Error(error);
   }
 };

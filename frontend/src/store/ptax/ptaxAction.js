@@ -53,7 +53,8 @@ export const getPtaxCollection = (data) => {
 export const updatePtaxCollection = (updatedData) => {
   return async (dispatch) => {
     const updatePtaxData = async () => {
-      const url = "http://localhost:8080/dcb/property-tax/" + updatedData.id;
+      const url =
+        "http://localhost:8080/dcb/property-tax/general-data/" + updatedData.id;
 
       const response = await axios.patch(url, { ...updatedData });
 

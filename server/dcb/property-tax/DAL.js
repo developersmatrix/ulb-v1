@@ -15,7 +15,7 @@ export const getPtaxData = async (collectionType, startYear) => {
   return ptax;
 };
 
-export const createGeneralData = async (generalData) => {
+export const addGeneralDataDAL = async (generalData) => {
   const newData = new propertyTaxes({
     _id: mongoose.Types.ObjectId(),
     userId: generalData.userId,
@@ -36,11 +36,27 @@ export const createGeneralData = async (generalData) => {
   }
 };
 
-export const patchPtaxData = async (id, newData) => {
+export const updateGeneralDataDAL = async (id, newData) => {
   try {
-    update = await propertyTaxes.findByIdAndUpdate(id, newData, {
+    const update = await propertyTaxes.findByIdAndUpdate(id, newData, {
       new: true,
     });
+    return update;
+  } catch (err) {
+    console.log(err);
+    throw new Error(err);
+  }
+};
+
+export const updateMonthlyCollectionDAL = async (
+  ptaxId,
+  collectionID,
+  updatedCollectionData
+) => {
+  try {
+    const update = await propertyTaxes.findById(ptaxId);
+    const monthlyCollection = update.monthlyCollection.id(collectionID);
+    monthlyCollection;
     return update;
   } catch (err) {
     console.log(err);
