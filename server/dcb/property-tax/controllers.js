@@ -4,6 +4,7 @@ import {
   serviceGetPtax,
   updateGeneralDataService,
   addGeneralDataService,
+  addMonthlyCollectionService,
   updateMonthlyCollectionService,
 } from "./service.js";
 
@@ -36,6 +37,17 @@ export const updateGeneralData = async (req, res, next) => {
   const newData = req.body;
   try {
     const response = await updateGeneralDataService(id, newData);
+    res.status(200).json(response);
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export const addMonthlyCollection = async (req, res, next) => {
+  const id = req.params.id;
+  const collectionData = req.body;
+  try {
+    const response = await addMonthlyCollectionService(id, collectionData);
     res.status(200).json(response);
   } catch (error) {
     throw new Error(error);

@@ -2,6 +2,7 @@ import {
   getPtaxData,
   addGeneralDataDAL,
   updateGeneralDataDAL,
+  addMonthlyCollectionDAL,
   updateMonthlyCollectionDAL,
 } from "./DAL.js";
 
@@ -36,10 +37,23 @@ export const updateGeneralDataService = async (id, newData) => {
   }
 };
 
-export const updateMonthlyCollectionService = async (id, collectionData) => {
+export const addMonthlyCollectionService = async (ptaxId, collectionData) => {
+  try {
+    const res = await addMonthlyCollectionDAL(ptaxId, collectionData);
+    return res;
+  } catch (error) {
+    console.log(error);
+    throw Error();
+  }
+};
+
+export const updateMonthlyCollectionService = async (
+  id,
+  updatedCollectionData
+) => {
   const ptaxId = id;
-  const collectionID = collectionData.monthlyCollection.id;
-  const updatedCollectionData = { ...collectionData.monthlyCollection };
+  const collectionID = updatedCollectionData.id;
+  // const updatedCollectionData = { ...collectionData.monthlyCollection };
 
   try {
     const res = await updateMonthlyCollectionDAL(

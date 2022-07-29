@@ -48,6 +48,25 @@ export const updateGeneralDataDAL = async (id, newData) => {
   }
 };
 
+export const addMonthlyCollectionDAL = async (ptaxId, collectionData) => {
+  try {
+    const Ptax = await propertyTaxes.findById(ptaxId);
+    Ptax.monthlyCollection.push({
+      _id: mongoose.Types.ObjectId(),
+      year: collectionData.year,
+      month: collectionData.month,
+      OBC: collectionData.OBC,
+      CYD: collectionData.CYD,
+    });
+    const ans = await Ptax.save();
+    console.log(collectionData);
+    return ans;
+  } catch (error) {
+    console.log(error);
+    throw new Error(error);
+  }
+};
+
 export const updateMonthlyCollectionDAL = async (
   ptaxId,
   collectionID,
@@ -56,7 +75,10 @@ export const updateMonthlyCollectionDAL = async (
   try {
     const update = await propertyTaxes.findById(ptaxId);
     const monthlyCollection = update.monthlyCollection.id(collectionID);
-    monthlyCollection;
+    monthlyCollection.OBC = updatedCollectionData.OBC;
+    monthlyCollection.CYD = updatedCollectionData.CYD;
+    const ans = await update.save();
+    console.log(ans);
     return update;
   } catch (err) {
     console.log(err);
