@@ -5,7 +5,20 @@ import Input from "../../UI/Input/Input";
 import styles from "./PtaxCollection.module.css";
 
 const PtaxCollection = (props) => {
-  const months = ["January", "February", "March", "April", "May", "June"];
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
   const month = months[props.data.month];
 
