@@ -29,7 +29,7 @@ function UpdateDCBForm() {
       {!isGenInfoEmpty && isMonColEmpty && (
         <Fragment>
           <GeneralInfo id={ptaxData._id} />
-          <AddBtn>Add Monthly Collection</AddBtn>
+          {ptaxData._id === null && <AddBtn>Add Monthly Collection</AddBtn>}
         </Fragment>
       )}
 

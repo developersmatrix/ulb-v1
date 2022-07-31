@@ -11,6 +11,8 @@ import { updatePtaxCollection } from "../../../store/ptax/ptaxAction";
 
 const GeneralInfo = (props) => {
   const info = useSelector((state) => state.ptax.ptaxData);
+  const startYear = useSelector((state) => state.ptax.fetchedYear);
+  const endYear = Number(startYear) + 1;
   const dispatch = useDispatch();
 
   //states of property types
@@ -98,7 +100,7 @@ const GeneralInfo = (props) => {
     <Card className={styles.container__general}>
       <Form onSubmit={submitHandler}>
         <h1 className={styles.heading__primary}>
-          Property Tax Collection - {` ${info.startYear}- ${info.endYear}`}
+          Property Tax Collection - {` ${startYear}- ${endYear}`}
         </h1>
         <div className={styles["form__general--info"]}>
           <Input

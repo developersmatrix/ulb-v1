@@ -4,6 +4,7 @@ export const ptaxSlice = createSlice({
   name: "propertytax",
   initialState: {
     dataFetched: false,
+    fetchedYear: 0,
     giIsEmpty: true,
     mcIsEmpty: true,
     mcIsFull: false,
@@ -32,8 +33,8 @@ export const ptaxSlice = createSlice({
   reducers: {
     addPtax: (state, action) => {
       state.dataFetched = true;
-      let ptax = action.payload;
-      if (Object.keys(ptax).length === 0) {
+      let ptax = action.payload.ptaxData;
+      if (ptax._id === undefined) {
         state.giIsEmpty = true;
         state.mcIsEmpty = true;
         state.mcIsFull = false;
@@ -50,7 +51,8 @@ export const ptaxSlice = createSlice({
         state.mcIsEmpty = false;
         state.mcIsFull = true;
       }
-      state.ptaxData = action.payload;
+      state.fetchedYear = action.payload.fetchedYear;
+      state.ptaxData = ptax;
     },
     updatePtax: (state, action) => {
       state.ptaxData = action.payload;

@@ -6,7 +6,7 @@ export const getPtaxData = async (collectionType, startYear) => {
   let ptax = null;
   console.log(startYear);
   try {
-    ptax = await propertyTaxes.find({ startYear });
+    ptax = await propertyTaxes.findOne({ startYear });
     console.log(ptax);
   } catch (err) {
     console.log(err.message);

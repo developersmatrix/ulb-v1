@@ -36,13 +36,13 @@ export const getPtaxCollection = (data) => {
     };
 
     try {
-      const ptaxArray = await getPtax();
-      if (ptaxArray.length === 0) {
-        dispatch(addPtax({}));
+      const ptaxData = await getPtax();
+      console.log(data.startYear);
+      if (ptaxData === null) {
+        dispatch(addPtax({ fetchedYear: data.startYear, ptaxData: {} }));
       } else {
-        const ptaxData = ptaxArray[0];
         console.log(ptaxData);
-        dispatch(addPtax(ptaxData));
+        dispatch(addPtax({ fetchedYear: data.startYear, ptaxData: ptaxData }));
       }
     } catch (error) {
       console.log(error.message);
