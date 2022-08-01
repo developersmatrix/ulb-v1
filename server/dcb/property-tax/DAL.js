@@ -18,18 +18,18 @@ export const getPtaxData = async (collectionType, startYear) => {
 export const addGeneralDataDAL = async (generalData) => {
   const newData = new propertyTaxes({
     _id: mongoose.Types.ObjectId(),
-    userId: generalData.userId,
+    userId: "628e5c5742cf7b6b271c839d",
     startYear: generalData.startYear,
     endYear: generalData.endYear,
     commercial: generalData.commercial,
     residential: generalData.residential,
     vacant: generalData.vacant,
-    others: generalData.others,
     openingBalance: generalData.openingBalance,
     currentYearDemand: generalData.currentYearDemand,
   });
   try {
     const create = await newData.save();
+    console.log(create);
     return create;
   } catch (error) {
     throw new Error(error);

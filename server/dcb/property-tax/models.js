@@ -10,7 +10,6 @@ const propertyTaxSchema = new mongoose.Schema({
   commercial: Number,
   residential: Number,
   vacant: Number,
-  others: Number,
   openingBalance: Number,
   currentYearDemand: Number,
   monthlyCollection: [

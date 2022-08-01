@@ -26,9 +26,10 @@ export const addGeneralData = async (req, res, next) => {
   const generalData = req.body;
   try {
     const response = await addGeneralDataService(generalData);
+    console.log("con", response);
     res.status(201).json(response);
   } catch (error) {
-    throw new Error(error);
+    return next(error);
   }
 };
 

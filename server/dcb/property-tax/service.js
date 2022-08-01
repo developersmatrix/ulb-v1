@@ -21,6 +21,7 @@ export const serviceGetPtax = async (collectionType, startYear) => {
 export const addGeneralDataService = async (generalData) => {
   try {
     const response = await addGeneralDataDAL(generalData);
+    console.log(response);
     return response;
   } catch (error) {
     throw new Error(error);

@@ -53,13 +53,23 @@ export const getPtaxCollection = (data) => {
 export const updatePtaxCollection = (updatedData) => {
   return async (dispatch) => {
     const updatePtaxData = async () => {
-      const url =
-        "http://localhost:8080/dcb/property-tax/general-data/" + updatedData.id;
+      let url, response;
+      if (updatedData.id === undefined) {
+        console.log(updatedData);
+        url = "http://localhost:8080/dcb/property-tax/general-data/";
+        response = await axios.post(url, { ...updatedData });
+      } else {
+        url =
+          "http://localhost:8080/dcb/property-tax/general-data/" +
+          updatedData.id;
+        response = await axios.patch(url, { ...updatedData });
+      }
 
-      const response = await axios.patch(url, { ...updatedData });
-
+      console.log(response.statusText);
       if (response.statusText !== "OK") {
         throw new Error("Failed loading Ptax data");
+      } else if (response.statusText !== "Created") {
+        throw new Error("Unable to post General Data");
       }
 
       return response.data;
