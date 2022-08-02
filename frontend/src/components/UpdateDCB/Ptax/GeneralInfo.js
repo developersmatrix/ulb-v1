@@ -110,6 +110,7 @@ const GeneralInfo = (props) => {
             value={residential}
             onChange={residentialHandler}
             disabled={isDisabled}
+            errorMsg={"wrong"}
           />
           <Input
             label="Commercial Properties"
